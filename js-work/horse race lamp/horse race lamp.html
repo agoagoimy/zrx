@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>horse race lamp</title>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin:0;
+		list-style: none;
+	}
+	body{
+		background: #000;
+	}
+	div{
+		width: 620px;
+		height: 465px;
+		margin:50px auto;
+		position: relative;
+		overflow: hidden;
+		border: 1px solid #999;
+	}
+	div ul{
+		width: 2000px;
+		position: absolute;
+		left: 0;
+	}
+	div li{
+		float: left;
+	}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var aUl=document.getElementsByTagName('ul');
+		//var aDiv=document.getElementsByTagName('div');
+		var num=0;
+		var timer=null;
+		//开启之前清除一下
+		clearInterval(timer);
+		timer=setInterval(function(){
+			if (num==-1240) {
+				num=0;
+			}
+			aUl[0].style.left=num--+'px';
+		},10)
+		//当鼠标经过清楚定时器
+		aUl[0].onmouseover=function(){//上面如果定义了div 可以写aDiv[0].onmouseover=func
+			clearInterval(timer);
+		}
+		aUl[0].onmouseout=function(){//上面如果定义了div 可以写aDiv[0].onmouseover=func
+			clearInterval(timer);
+		timer=setInterval(function(){
+			if (num==-1240) {
+				num=0;
+			}
+			aUl[0].style.left=num--+'px';
+		},10)
+		}
+	}
+	</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li><img src="images/01.jpg"></li>
+			<li><img src="images/02.jpg"></li>
+			<li><img src="images/03.jpg"></li>
+			<li><img src="images/04.jpg"></li>
+			<li><img src="images/01.jpg"></li>
+			<li><img src="images/02.jpg"></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tMusic navigation</title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding: 0;
+		list-style: none;
+	}
+	nav{
+		width: 800px;
+		height: 40px;
+		margin: 100px auto;
+		border: 1px solid #ccc;
+	}
+	nav li{
+		width: 99px;
+		height: 40px;
+		float: left;
+		border-right: 1px solid #ccc;
+		position: relative;
+	}
+	nav .last{
+		border: none;
+	}
+	nav li ins{
+		width: 99px;
+		height: 40px;
+		position: absolute;
+		left: 0;
+		top: 40px;
+		background: pink;
+	}
+	</style>
+	<script src="jquery.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var tag = $('<ins></ins>');
+		$('nav li').append(tag);
+		//给每一个ins添加颜色
+		var color = ['pink','purple','lightblue','orange','yellow','salmon','blue','green']
+		$('nav li ins').each(function(index,el){
+			$(el).css({background:color[index]});
+		});
+		$(' nav li').hover(function(event){
+			$(this).children().stop().animate({top:0},200);
+			var index = $(this).index();
+			//音乐先加载 在播放
+			$('audio').get(index).load();
+			$('audio').get(index).play();
+		},function(){
+			$(this).children().stop().animate({top:40},200)
+		});
+		//通过键盘事件来触发之前的事件
+		$(window).keydown(function(event){
+			//按下1-8触发相应的音乐 每一个键盘对应一个键盘码
+			if( event.keyCode >= 49 && event.keyCode <= 56){
+				//通过0-7 找到对应的事件，
+				var num = event.keyCode - 49;
+				console.log(num);
+				//是通过编号找事件，进行触发
+				$('nav li').eq(num).trigger('mouseover');
+				//200毫秒之后，自动下来
+				//通过使用单次触发原理
+				setTimeout(function(){
+					//触发mouseout
+					$('nav li').eq(num).trigger('mouseout');
+				},200);
+			}
+			
+		})
+	})
+	</script>
+
+</head>
+<body>
+	<nav>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li class="last"></li>
+		</ul>
+		<audio src="music/a1.mp3"></audio>
+		<audio src="music/a2.mp3"></audio>
+		<audio src="music/a3.mp3"></audio>
+		<audio src="music/a4.mp3"></audio>
+		<audio src="music/a5.mp3"></audio>
+		<audio src="music/a6.mp3"></audio>
+		<audio src="music/a7.mp3"></audio>
+		<audio src="music/a8.mp3"></audio>
+	</nav>
+</body>
+</html>
