@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>netease-tab</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.box{
+		width: 300px;
+		margin:100px auto;
+		border-top: 2px solid darkblue;
+	}
+	.box .hd{
+		overflow: hidden;
+	}
+	.box .hd li{
+		width: 99px;
+		height: 30px;
+		line-height: 30px;
+		background: #eee;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		float: left;
+		text-align: center;
+		cursor: pointer;
+	}
+	.box .hd li.current{
+		background: #fff;
+		border-bottom: 1px solid #fff;
+	}
+	.box .hd .first{
+		width: 98px;
+		border-left:1px solid #ccc;
+	}
+	.box dl{
+		height: 185px;
+		padding-top: 15px;
+		font-size: 12px;
+		font-family: "宋体";
+		display: none;
+	}
+	.box dl.current{
+		display: block;
+	}
+	.box dt{
+		float: left;
+		width: 130px;
+	}
+	.box dt p{
+		text-align: center;
+	}
+	.box dd{
+		width: 160px;
+		line-height: 23px;
+		padding-left: 10px;
+		float: left;
+	}
+	</style>
+	<script src="jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.hd li').mouseover(function(){
+				//排他 1.确立自身   2.排除兄弟
+				$(this).addClass('current').siblings().removeClass('current');
+				var index = $(this).index();
+				//通过索引编号查找对应的dl
+				// $('.box dl:eq('+index+')').addClass('current').siblings().removeClass('current');或者
+				$('.box dl').eq(index).addClass('current').siblings().removeClass('current');
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="box">
+		<ul class="hd">
+			<li class="first current">娱乐</li>
+			<li>电视</li>
+			<li>电影</li>
+		</ul>
+		<dl class="current">
+			<dt>
+				<img src="images/01.jpg">
+				<p>《暗杀》破800万观影</p>
+			</dt>
+			<dd>
+				<ul>
+					<li>园子温“魔鬼游戏”海外获奖</li>
+					<li>《西游降魔2》定名伏妖篇</li>
+					<li>《大圣》出品人：8亿是意外</li>
+					<li>塞缪尔杰克逊或演金刚前传</li>
+					<li>《暗杀》破800万观影人次</li>
+				</ul>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<img src="images/02.jpg">
+				<p>《暗杀》破800万观影</p>
+			</dt>
+			<dd>
+				<ul>
+					<li>园子温“魔鬼游戏”海外获奖</li>
+					<li>《西游降魔2》定名伏妖篇</li>
+					<li>《大圣》出品人：8亿是意外</li>
+					<li>塞缪尔杰克逊或演金刚前传</li>
+					<li>《暗杀》破800万观影人次</li>
+				</ul>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<img src="images/03.jpg">
+				<p>《暗杀》破800万观影</p>
+			</dt>
+			<dd>
+				<ul>
+					<li>园子温“魔鬼游戏”海外获奖</li>
+					<li>《西游降魔2》定名伏妖篇</li>
+					<li>《大圣》出品人：8亿是意外</li>
+					<li>塞缪尔杰克逊或演金刚前传</li>
+					<li>《暗杀》破800万观影人次</li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+</body>
+</html>
